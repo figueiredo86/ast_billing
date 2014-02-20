@@ -1,6 +1,7 @@
 #!/usr/bin/perl -w
 
 use Asterisk::AGI;
+use Switch;
 
 $agi = new Asterisk::AGI;
 
@@ -8,7 +9,7 @@ sub main () {
  # recebe e define as variáveis que serão utilizadas na sessão
  my $exten = $ARGV[0];
  &check_ext_type($exten);
- &select_route($call_type);
+ &select_route($call_type,$exten);
 }
 
 sub check_ext_type () {
@@ -41,10 +42,14 @@ sub check_ext_type () {
  }
 }
 
-
 sub select_route () {
  my $call_type = $_[0];
- $agi->noop($call_type);
+ my $exten = $_[1];
+ switch ($call_type) {
+  case "interna" {
+   $agi->exec('Dial',"SIP/$exten,60,tTwW");
+  }
+ }
 }
 
 &main;
