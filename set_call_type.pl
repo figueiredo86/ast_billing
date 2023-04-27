@@ -5,6 +5,9 @@ use Switch;
 
 $agi = new Asterisk::AGI;
 
+
+# Código alterado em 27/04/2023
+
 sub main () 
 {
     # recebe e define as variáveis que serão utilizadas na sessão
