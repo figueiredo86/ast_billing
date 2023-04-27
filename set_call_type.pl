@@ -5,8 +5,9 @@ use Switch;
 
 $agi = new Asterisk::AGI;
 
-sub main () {
- # recebe e define as variáveis que serão utilizadas na sessão
+sub main () 
+{
+    # recebe e define as variáveis que serão utilizadas na sessão
  my $exten = $ARGV[0];
  &check_ext_type($exten);
  &select_route($call_type,$exten);
